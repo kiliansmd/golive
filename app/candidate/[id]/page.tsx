@@ -90,9 +90,9 @@ export default function CandidateDetailsPage() {
     }
   };
 
-  const mapResumeToKandidat = (resume: ParsedResume): Kandidat => {
+  const mapResumeToKandidat = (resume: any): Kandidat => {
     return {
-      id: typeof id === 'string' ? id : '',
+      id: resume.id || (typeof id === 'string' ? id : ''),
       name: resume.parsed.name,
       position: resume.parsed.title,
       gehalt: 'Auf Anfrage', // Default value
@@ -118,22 +118,22 @@ export default function CandidateDetailsPage() {
         wohnort: resume.parsed.contact.location_city,
         familienstand: ''
       },
-      softwareKenntnisse: resume.parsed.skills.map(skill => ({
+      softwareKenntnisse: resume.parsed.skills.map((skill: string) => ({
         name: skill,
         level: 80 // Default level
       })),
-      sprachkenntnisse: resume.parsed.languages.map(lang => ({
+      sprachkenntnisse: resume.parsed.languages.map((lang: string) => ({
         sprache: lang,
         niveau: 'Fließend', // Default value
         level: 80 // Default level
       })),
       highlights: [],
-      topSkills: resume.parsed.skills.slice(0, 3).map(skill => ({
+      topSkills: resume.parsed.skills.slice(0, 3).map((skill: string) => ({
         title: skill,
         description: '',
         keywords: []
       })),
-      work: resume.parsed.employment_history.map(job => ({
+      work: resume.parsed.employment_history.map((job: any) => ({
         name: job.company,
         position: job.position,
         startDate: formatDate(job.startDate),
@@ -141,7 +141,7 @@ export default function CandidateDetailsPage() {
         summary: Array.isArray(job.description) ? job.description.join('\n') : job.description || '',
         achievements: Array.isArray(job.description) ? job.description : []
       })),
-      education: resume.parsed.education.map(edu => ({
+      education: resume.parsed.education.map((edu: any) => ({
         institution: edu.institution,
         url: '',
         area: edu.degree,
@@ -151,7 +151,7 @@ export default function CandidateDetailsPage() {
         note: ''
       })),
       certificates: [],
-      languages: resume.parsed.languages.map(lang => ({
+      languages: resume.parsed.languages.map((lang: string) => ({
         language: lang,
         fluency: 'Fließend' // Default value
       }))
