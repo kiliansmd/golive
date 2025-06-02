@@ -48,7 +48,7 @@ export function KandidatenProfile({
             const res = await fetch('/api/share-link', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ kandidatId: kandidat.name }),
+                body: JSON.stringify({ kandidatId: kandidat.id }),
             })
             const data = await res.json()
             if (!res.ok) {
@@ -174,7 +174,7 @@ export function KandidatenProfile({
                                 </div>
 
                                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-heading-1 mb-2 text-white font-bold">
-                                    {kandidat.name}
+                                    {kandidat.id}
                                 </h1>
                                 <h2 className="text-xl sm:text-2xl md:text-heading-3 text-blue-400 font-medium mb-4 sm:mb-6">
                                     {kandidat.position}
@@ -207,7 +207,7 @@ export function KandidatenProfile({
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
             </section>
@@ -328,7 +328,7 @@ export function KandidatenProfile({
                                     <div className="relative">
                                         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple rounded-full blur-md opacity-20 scale-110"></div>
                                         <div className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 flex items-center justify-center relative z-10 border-2 border-white shadow-md">
-                                            <span className="text-4xl font-bold text-blue-600">{kandidat.name.charAt(0)}</span>
+                                            <span className="text-4xl font-bold text-blue-600">{kandidat.id.charAt(0)}</span>
                                         </div>
                                     </div>
                                 </div>

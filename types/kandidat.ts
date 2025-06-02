@@ -70,6 +70,7 @@ export interface Language {
 }
 
 export interface Kandidat {
+  id: string
   name: string
   position: string
   gehalt: string

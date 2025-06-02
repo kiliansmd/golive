@@ -92,6 +92,7 @@ export default function CandidateDetailsPage() {
 
   const mapResumeToKandidat = (resume: ParsedResume): Kandidat => {
     return {
+      id: typeof id === 'string' ? id : '',
       name: resume.parsed.name,
       position: resume.parsed.title,
       gehalt: 'Auf Anfrage', // Default value
